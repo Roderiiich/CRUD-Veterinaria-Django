@@ -1,0 +1,40 @@
+{% extends "./base.html"%}
+
+{% block title %} Edición de Mascotas {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h1>Editar Dueño</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarDueño/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtRut" name="txtRut" class="form-control" placeholder="Rut" required  value="{{dueño.rut}}" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{dueño.nombre}}"
+                            placeholder="Nombre Completo"  required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                            placeholder="Direccion" maxlength="50" required  value="{{dueño.direccion}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Telefono" required  value="{{dueño.telefono}}" >
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Correo Electrónico" required  value="{{dueño.correo}}" >
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}

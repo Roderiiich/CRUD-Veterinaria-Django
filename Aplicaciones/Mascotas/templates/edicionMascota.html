@@ -1,0 +1,46 @@
+{% extends "./base.html"%}
+
+{% load static %}
+
+{% block title %} Edición de Mascotas {% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Editar Mascota</h2>
+            <div class="card shadow rounded">
+                <div class="card-body">
+                    <form action="/editarMascota/" method="POST">{% csrf_token %}
+                        <div class="mb-3">
+                            <label for="txtId" class="form-label">ID</label>
+                            <input type="text" id="txtId" name="txtId" value="{{mascota.id}}" class="form-control" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtNombre" class="form-label">Nombre Mascota</label>
+                            <input type="text" id="txtNombre" name="txtNombre" value="{{mascota.nombre_mascota}}" class="form-control" placeholder="Nombre Mascota" minlength="2" maxlength="50" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtFechaNac" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" id="txtFechaNac" name="txtFechaNac" class="form-control" value="{{mascota.fecha_nac}}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtSexo" class="form-label">Sexo</label>
+                            <select id="txtSexo" name="txtSexo" class="form-select" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="Macho" {% if mascota.sexo == "Macho" %}selected{% endif %}>Macho</option>
+                                <option value="Hembra" {% if mascota.sexo == "Hembra" %}selected{% endif %}>Hembra</option>
+                            </select>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}
