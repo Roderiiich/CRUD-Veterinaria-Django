@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Mascota , Dueño
+from .models import Mascota , Dueño ,Especie_Mascota
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -31,8 +31,17 @@ def home(request):
     return render(request, 'home.html')
 
 def gestionarMascota(request):
-    mascotasListado=Mascota.objects.all()
-    return render(request, "gestionMascotas.html" , {"mascotas": mascotasListado})
+    mascotasListado = Mascota.objects.all()
+    dueños = Dueño.objects.all()
+    especies=Especie_Mascota.objects.all()
+    
+    
+    return render(request, "gestionMascotas.html", {
+        "mascotas": mascotasListado,
+        "dueños": dueños,
+        "especies":especies,
+        
+    })
 
 
 def registrarMascota(request):
@@ -66,9 +75,7 @@ def editarMascota(request):
     mascota.save()
     return redirect('/')
 
-def gestionarDueño (request):
-    dueñosListado=Dueño.objects.all()
-    return render(request, "gestionDueño.html" , {"dueño": dueñosListado})
+
 
 def registrarDueño(request):
     rut=request.POST['txtRut']
@@ -108,3 +115,36 @@ def editarDueño(request):
 def gestionarDueño(request):
     dueñosListado = Dueño.objects.all()
     return render(request, "gestionDueños.html", {"dueño": dueñosListado})
+
+
+def registrarEspecie(request):
+    if request.method == "POST":
+        nombre_especie = request.POST['txtNombre']
+        Especie_Mascota.objects.create(nombre_especie=nombre_especie)
+        return redirect('/gestionarEspecies') 
+
+def eliminarEspecie(request ,id):
+    especie = Especie_Mascota.objects.get(id=id)
+    especie.delete()
+    return redirect('/gestionarEspecie')
+
+def edicionEspecie(request,rut):
+    especie = Especie_Mascota.objects.get(id=id)
+    return render(request,"edicionEspecie.html", {"especie":especie})
+
+def editarEspecie(request):
+    id=request.POST['txtId']
+    nombre_especie=request.POST['txtNombre']
+
+    especie = Especie_Mascota.objects.get(id=id)
+    especie.id=id
+    especie.nombre_especie=nombre_especie
+    
+    especie.save()
+    return redirect('/gestionarEspecie')
+
+def gestionarEspecie(request):
+    especiesListado = Especie_Mascota.objects.all()
+    return render(request, "gestionEspecies.html", {"especie": especiesListado})
+
+

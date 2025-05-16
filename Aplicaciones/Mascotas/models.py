@@ -11,11 +11,11 @@ class Dueño(models.Model):
         return texto.format(self.nombre,self.rut)
 
 class Especie_Mascota(models.Model):
-    id=models.CharField(primary_key=True,max_length=6)
+    id=models.AutoField(primary_key=True,max_length=6)
     nombre_especie=models.CharField(max_length=50)
 
 class Mascota(models.Model):
-    id=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True ,unique=True)
     nombre_mascota=models.CharField(max_length=50)
     fecha_nac=models.DateField(max_length=10)
     sexo = models.CharField(max_length=10, choices=[('Macho', 'Macho'), ('Hembra', 'Hembra')])

@@ -1,5 +1,33 @@
-{% extends "./base.html"%}
+{% extends "./base.html" %}
 
 {% block body %}
-<h1> HOLA CATITA LINDA ESTAMOS EN EL INICIO</h1>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5">Bienvenido a la Plataforma Veterinaria</h1>
+        <p class="lead">Hola, {{ request.user.username }}. Aquí puedes gestionar la información de los dueños y sus mascotas.</p>
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Gestión de Dueños</h4>
+                    <p class="card-text">Ver, agregar, editar o eliminar registros de los dueños de mascotas.</p>
+                    <a href="{% url 'gestionarDueño' %}" class="btn btn-primary">Ir a Dueños</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Gestión de Mascotas</h4>
+                    <p class="card-text">Administrar los datos de las mascotas vinculadas a sus dueños.</p>
+                    <a href="{% url 'gestionarMascota' %}" class="btn btn-success">Ir a Mascotas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<h1>Editar Especie</h1>
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'editarEspecie' especie.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nombre_especie">Nombre de la Especie</label>
+                        <input type="text" id="nombre_especie" name="nombre_
