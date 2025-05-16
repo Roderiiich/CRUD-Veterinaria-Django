@@ -2,7 +2,8 @@ from django .urls import path
 from  Aplicaciones.Mascotas import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.login_view, name='login'),
+    path('home', views.home, name='home'),
     path('gestionarMascota/', views.gestionarMascota, name='gestionarMascota'),
     path('registrarMascota/', views.registrarMascota, name='registrarMascota'),
     path('eliminarMascota/<id>', views.eliminarMascota, name='eliminarMascota'),
