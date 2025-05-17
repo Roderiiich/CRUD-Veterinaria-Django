@@ -45,11 +45,27 @@ def gestionarMascota(request):
 
 
 def registrarMascota(request):
-    nombre_mascota=request.POST['txtNombre']
-    fecha_nac=request.POST['txtFechaNac']
-    sexo=request.POST['txtSexo']
+    if request.method == "POST":
+        nombre_mascota = request.POST['txtNombre']
+        fecha_nac = request.POST['txtFechaNac']
+        sexo = request.POST['txtSexo']
+        rut_dueño = request.POST['selectDueño']
+        id_especie = request.POST['selectEspecie']
 
-    mascotas=Mascota.objects.create(nombre_mascota=nombre_mascota,fecha_nac=fecha_nac,sexo=sexo)
+        try:
+            dueño = Dueño.objects.get(rut=rut_dueño)
+            especie = Especie_Mascota.objects.get(id=id_especie)
+
+            Mascota.objects.create(
+                nombre_mascota=nombre_mascota,
+                fecha_nac=fecha_nac,
+                sexo=sexo,
+                dueño=dueño,
+                especie=especie
+            )
+        except (Dueño.DoesNotExist, Especie_Mascota.DoesNotExist):
+            print("Error: Dueño o especie no encontrados")
+
     return redirect('/gestionarMascota')
 
 def eliminarMascota(request,id):
@@ -115,6 +131,14 @@ def editarDueño(request):
 def gestionarDueño(request):
     dueñosListado = Dueño.objects.all()
     return render(request, "gestionDueños.html", {"dueño": dueñosListado})
+
+def detalleDueño(request, rut):
+    dueño = Dueño.objects.get(rut=rut)
+    mascotas = Mascota.objects.filter(dueño=dueño).select_related('especie')
+    return render(request, 'detalleDueño.html', {
+        'dueño': dueño,
+        'mascotas': mascotas
+    })
 
 
 def registrarEspecie(request):

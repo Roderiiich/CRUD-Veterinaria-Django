@@ -1,0 +1,43 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<h2>Detalle del Dueño ({{ dueño.nombre }})</h2>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h4>{{ dueño.nombre }}</h4>
+        <p><strong>RUT:</strong> {{ dueño.rut }}</p>
+        <p><strong>Dirección:</strong> {{ dueño.direccion }}</p>
+        <p><strong>Teléfono:</strong> {{ dueño.telefono }}</p>
+        <p><strong>Correo:</strong> {{ dueño.correo }}</p>
+    </div>
+</div>
+
+<h4>Mascotas de {{ dueño.nombre }}</h4>
+{% if mascotas %}
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="bg-info">
+                <th>Nombre</th>
+                <th>Fecha de Nac.</th>
+                <th>Sexo</th>
+                <th>Especie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mascota in mascotas %}
+                <tr>
+                    <td>{{ mascota.nombre_mascota }}</td>
+                    <td>{{ mascota.fecha_nac }}</td>
+                    <td>{{ mascota.sexo }}</td>
+                    <td>{{ mascota.especie.nombre_especie }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Este dueño no tiene mascotas registradas.</p>
+{% endif %}
+
+<a href="{% url 'gestionarDueño' %}" class="btn btn-info btn-xl">Volver</a>
+{% endblock %}

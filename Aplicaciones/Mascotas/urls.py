@@ -22,6 +22,8 @@ urlpatterns = [
     path('edicionEspecie/<id>/', views.edicionEspecie, name='edicionEspecie'),
     path('editarEspecie/<id>/', views.editarEspecie, name='editarEspecie'),
     path('eliminarEspecie/<id>/', views.eliminarEspecie, name='eliminarEspecie'),
+    path('detalleDueño/<rut>/', views.detalleDueño, name='detalleDueño'),
+
     
 
    

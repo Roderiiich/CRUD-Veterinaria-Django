@@ -4,8 +4,8 @@
 <div class="container mt-5">
     <div class="text-center mb-4">
         <h1 class="display-5">Bienvenido a la Plataforma Veterinaria</h1>
-        <p class="lead">Hola, {{ request.user.username }}. Aquí puedes gestionar la información de los dueños y sus mascotas.</p>
-        <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm">Cerrar sesión</a>
+        <h2>Hola, {{ request.user.username }}. Aquí puedes gestionar la información de los dueños y sus mascotas.</h2>
+        
     </div>
 
     <div class="row">
@@ -25,6 +25,26 @@
                     <h4 class="card-title">Gestión de Mascotas</h4>
                     <p class="card-text">Administrar los datos de las mascotas vinculadas a sus dueños.</p>
                     <a href="{% url 'gestionarMascota' %}" class="btn btn-success">Ir a Mascotas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Gestión de Especies</h4>
+                    <p class="card-text">Administrar los datos de las especies existentes.</p>
+                    <a href="{% url 'gestionarEspecies' %}" class="btn btn-warning">Ir a Mascotas</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h4 class="card-title">¿Desea Cerrar la Sesión</h4>
+                    <p class="card-text">Puedes volver cuando quieras.</p>
+                    <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
                 </div>
             </div>
         </div>

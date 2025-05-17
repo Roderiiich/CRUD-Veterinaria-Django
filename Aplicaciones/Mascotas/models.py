@@ -19,9 +19,11 @@ class Mascota(models.Model):
     nombre_mascota=models.CharField(max_length=50)
     fecha_nac=models.DateField(max_length=10)
     sexo = models.CharField(max_length=10, choices=[('Macho', 'Macho'), ('Hembra', 'Hembra')])
+    dueño = models.ForeignKey(Dueño, on_delete=models.CASCADE)
+    especie = models.ForeignKey(Especie_Mascota, on_delete=models.PROTECT)
     def __str__(self):
         texto= "{0} ({1})"
         return texto.format(self.nombre_mascota,self.sexo)
     
-dueño = models.ForeignKey(Dueño, on_delete=models.CASCADE)
-especie = models.ForeignKey(Especie_Mascota, on_delete=models.PROTECT)
+    
+
