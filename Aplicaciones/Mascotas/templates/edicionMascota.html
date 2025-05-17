@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <form action="/editarMascota/" method="POST">{% csrf_token %}
                         <div class="mb-3">
-                            <label for="txtId" class="form-label">ID</label>
+                            <label for="txtId" class="form-label">ID de Mascota</label>
                             <input type="text" id="txtId" name="txtId" value="{{mascota.id}}" class="form-control" readonly>
                         </div>
                         <div class="mb-3">

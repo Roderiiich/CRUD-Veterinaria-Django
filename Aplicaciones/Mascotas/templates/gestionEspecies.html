@@ -1,10 +1,10 @@
 {% extends "./base.html" %}
 
 {% block body %}
-<h1>Gestión de Especies</h1>
+<h1 class="mb-4">Gestión de Especies</h1>
 <div class="row">
-   
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+  
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-dismissible alert-success">
@@ -17,42 +17,41 @@
         <div class="card">
             <div class="card-body">
                 <form action="{% url 'registrarEspecie' %}" method="POST">{% csrf_token %}
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <input type="text" id="txtNombre" name="txtNombre" class="form-control"
                             placeholder="Nombre de la especie" required>
                     </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    <div class="form-group d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success px-4">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Tabla de especies registradas -->
+  
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
         <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-dark text-center">
                     <tr>
                         <th>ID</th>
                         <th>Nombre de la especie</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center align-middle">
                     {% for c in especie %}
-                    <tr>
-                        <td>{{ c.id }}</td>
-                        <td>{{ c.nombre_especie }}</td>
-                        {% if c.id %}
-                            <td><a href="{% url 'edicionEspecie' c.id %}" class="btn btn-warning">Editar</a></td>
-                            <td><a href="{% url 'eliminarEspecie' c.id %}" class="btn btn-danger">Eliminar</a></td>
-                        {% else %}
-                            <td colspan="2">ID no válido</td>
-                        {% endif %}
-                    </tr>
+                        <tr>
+                            <td>{{ c.id }}</td>
+                            <td>{{ c.nombre_especie }}</td>
+                            <td>
+                                <a href="{% url 'edicionEspecie' c.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'eliminarEspecie' c.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>

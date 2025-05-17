@@ -152,20 +152,19 @@ def eliminarEspecie(request ,id):
     especie.delete()
     return redirect('/gestionarEspecie')
 
-def edicionEspecie(request,rut):
+def edicionEspecie(request,id):
     especie = Especie_Mascota.objects.get(id=id)
-    return render(request,"edicionEspecie.html", {"especie":especie})
+    return render(request,"edicionEspecies.html", {"especie":especie})
 
-def editarEspecie(request):
-    id=request.POST['txtId']
-    nombre_especie=request.POST['txtNombre']
-
+def editarEspecie(request,id):
+   
+    nombre_especie=request.POST['nombre_especie']
     especie = Especie_Mascota.objects.get(id=id)
     especie.id=id
     especie.nombre_especie=nombre_especie
     
     especie.save()
-    return redirect('/gestionarEspecie')
+    return redirect('/gestionarEspecies')
 
 def gestionarEspecie(request):
     especiesListado = Especie_Mascota.objects.all()
