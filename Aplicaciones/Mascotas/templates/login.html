@@ -1,8 +1,11 @@
 {% extends "./base2.html" %}
-
+{% load static %}
 {% block body %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+<div class="container d-flex justify-content-center align-items-center vh-80">
+    
+    <div class="card shadow p-4" style="width: 100%; max-width: 400px;text-align: center;">
+        <h1>Patitas Felices</h1>
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo" class="logo-home rounded-circle" height="auto" width="auto">
         <h2 class="text-center mb-4">Iniciar sesión como Admin</h2>
         
         {% if messages %}

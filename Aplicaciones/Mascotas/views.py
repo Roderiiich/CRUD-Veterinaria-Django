@@ -89,7 +89,7 @@ def editarMascota(request):
     mascota.fecha_nac=fecha_nac
     mascota.sexo=sexo
     mascota.save()
-    return redirect('/')
+    return redirect('/gestionarMascota')
 
 
 

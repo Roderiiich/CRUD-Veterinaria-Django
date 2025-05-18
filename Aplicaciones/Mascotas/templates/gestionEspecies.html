@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-
+{% load static %}
 {% block body %}
 <h1 class="mb-4">Gestión de Especies</h1>
 <div class="row">
@@ -16,13 +16,14 @@
 
         <div class="card">
             <div class="card-body">
+                <img src="{% static 'img/perro.jpg' %}" alt="Logo" class="logo-home rounded-circle mx-auto d-block mb-4" style="width: 50%; height: auto;">
                 <form action="{% url 'registrarEspecie' %}" method="POST">{% csrf_token %}
                     <div class="form-group mb-3">
                         <input type="text" id="txtNombre" name="txtNombre" class="form-control"
                             placeholder="Nombre de la especie" required>
                     </div>
                     <div class="form-group d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success px-4">Guardar</button>
+                        <button type="submit" class="btn btn-success px-4"><i class="bi bi-floppy2-fill"></i> Guardar </button>
                     </div>
                 </form>
             </div>

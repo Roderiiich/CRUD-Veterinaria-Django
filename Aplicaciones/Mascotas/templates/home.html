@@ -1,14 +1,18 @@
 {% extends "./base.html" %}
-
+{% load static %}
 {% block body %}
+
 <div class="container mt-5">
+    
     <div class="text-center mb-4">
-        <h1 class="display-5">Bienvenido a la Plataforma Veterinaria</h1>
-        <h2>Hola, {{ request.user.username }}. Aquí puedes gestionar la información de los dueños y sus mascotas.</h2>
         
+        <h1 class="display-5">¡Bienvenido a la Patitas Felices!</h1>
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo" class="logo-home rounded-circle" height="auto" width="30%">
+        <h2>Hola, {{ request.user.username }}. Aquí puedes gestionar la información de la Veterinaria.</h2>
     </div>
 
     <div class="row">
+
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body text-center">
@@ -34,7 +38,7 @@
                 <div class="card-body text-center">
                     <h4 class="card-title">Gestión de Especies</h4>
                     <p class="card-text">Administrar los datos de las especies existentes.</p>
-                    <a href="{% url 'gestionarEspecies' %}" class="btn btn-warning">Ir a Mascotas</a>
+                    <a href="{% url 'gestionarEspecies' %}" class="btn btn-warning">Ir a Especies</a>
                 </div>
             </div>
         </div>
@@ -44,10 +48,12 @@
                 <div class="card-body text-center">
                     <h4 class="card-title">¿Desea Cerrar la Sesión</h4>
                     <p class="card-text">Puedes volver cuando quieras.</p>
-                    <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+                    <a href="{% url 'logout' %}" class="btn btn-danger" onclick="return confirmarCierre()">Cerrar sesión <i class="bi bi-box-arrow-in-left"></i></a>
                 </div>
             </div>
         </div>
+        
     </div>
+    
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-
+{% load static %}
 {% block body %}
 <h1 class="mb-4">Gestión de Mascotas</h1>
 <div class="row">
@@ -14,8 +14,9 @@
             {% endfor %}
         {% endif %}
 
-        <div class="card">
+        <div class="card" style="width: 100%; max-width: 400px;text-align: center;">
             <div class="card-body">
+                <img src="{% static 'img/gato2.jpg' %}" alt="Logo" class="logo-home  mx-auto d-block mb-4" style="width: 50%; height: auto;">
                 <form action="{% url 'registrarMascota' %}" method="POST">{% csrf_token %}
                     <div class="form-group mb-3">
                         <input type="text" id="txtNombre" name="txtNombre" class="form-control"
@@ -23,6 +24,7 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label for="txtFechaNac">Fecha de Nacimiento</label>
                         <input type="date" id="txtFechaNac" name="txtFechaNac" class="form-control"
                             placeholder="Fecha de Nacimiento" required>
                     </div>
@@ -54,7 +56,7 @@
                     </div>
 
                     <div class="form-group d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success px-5">Guardar</button>
+                        <button type="submit" class="btn btn-success px-5"><i class="bi bi-floppy2-fill"></i> Guardar </button>
                     </div>
                 </form>
             </div>
@@ -73,7 +75,7 @@
                         <th>Sexo</th>
                         <th>Dueño</th>
                         <th>Especie</th>
-                        <th colspan="2">Acciones</th>
+                        <th colspan="3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="text-center align-middle">
@@ -90,6 +92,9 @@
                             </td>
                             <td>
                                 <a href="{% url 'eliminarMascota' c.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'detalleDueño' c.dueño.rut %}" class="btn btn-info btn-sm">Ver Dueño</a>
                             </td>
                         </tr>
                     {% endfor %}
